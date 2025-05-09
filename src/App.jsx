@@ -21,7 +21,7 @@ const productData = [
     description: "Noise-cancelling headphones with great sound quality.",
     price: 200,
     photoName: "/headphones.png",
-    soldOut: false,
+    soldOut: true,
   },
   {
     name: "Smartwatch Z",
@@ -35,7 +35,7 @@ const productData = [
     description: "Powerful gaming console for endless fun.",
     price: 400,
     photoName: "/console.png",
-    soldOut: true,
+    soldOut: false,
   },
   {
     name: "4K TV",
@@ -48,11 +48,11 @@ const productData = [
 
 function App() {
   return (
-    <div>
+    <>
       <Header />
       <Catalog />
       <Footer />
-    </div>
+    </>
   );
 }
 function Header() {
@@ -105,27 +105,21 @@ function Catalog() {
     <main className="catalog">
       <ul className="products">
         {productData.map((product) => (
-          <Product
-            name={product.name}
-            description={product.description}
-            price={product.price}
-            image={product.photoName}
-            soldOut={product.soldOut}
-          />
+          <Product productObj={product} />
         ))}
       </ul>
     </main>
   );
 }
 
-function Product(props) {
+function Product({ productObj }) {
   return (
-    <li className="product">
-      <img src={props.image} alt={props.name} />
+    <li className={`product ${productObj.soldOut ? "sold-out" : ""}`}>
+      <img src={productObj.photoName} alt={productObj.name} />
       <div>
-        <h3>{props.name}</h3>
-        <p>{props.description}</p>
-        <span>{props.price}</span>
+        <h3>{productObj.name}</h3>
+        <p>{productObj.description}</p>
+        <span>{productObj.soldOut ? "SOLD-OUT" : productObj.price}</span>
       </div>
     </li>
   );
