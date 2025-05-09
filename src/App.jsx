@@ -125,6 +125,13 @@ function Product({ productObj }) {
   );
 }
 function Footer() {
-  return <footer className="footer">Footer</footer>;
+  return (
+    <footer className="footer">
+      <p>
+        <strong>Technologies used:</strong> React, JSX, Conditional Rendering,
+        CSS Modules.
+      </p>
+    </footer>
+  );
 }
 export default App;
